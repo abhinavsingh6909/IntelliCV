@@ -1,4 +1,4 @@
-# IntelliCV — AI Resume Analyzer 🚀
+# IntelliCV - AI Resume Analyzer 🚀
 
 The IntelliCV is a full-stack, AI-powered platform uses advanced AI algorithms to examine resumes based on the Job Description and provide matching scores and feedback on the improvements candidates should make to get that dream job.
 
