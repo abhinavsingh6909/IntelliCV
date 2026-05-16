@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { AuthContext } from '../context/AuthContext';
-import { UserPlus, AlertCircle } from 'lucide-react';
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { AuthContext } from "../context/AuthContext";
+import { UserPlus, AlertCircle } from "lucide-react";
 
 const RegisterPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { register } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -18,12 +18,14 @@ const RegisterPage = () => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
-    
+
     try {
       await register(name, email, password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to register. Please try again.');
+      setError(
+        err.response?.data?.message || "Failed to register. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -31,7 +33,7 @@ const RegisterPage = () => {
 
   return (
     <div className="flex-grow flex items-center justify-center p-4 py-12">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
@@ -42,7 +44,9 @@ const RegisterPage = () => {
             <UserPlus className="w-6 h-6" />
           </div>
           <h2 className="text-3xl font-bold">Create Account</h2>
-          <p className="text-slate-400 mt-2">Join IntelliCV and analyze your resume</p>
+          <p className="text-slate-400 mt-2">
+            Join IntelliCV and analyze your resume
+          </p>
         </div>
 
         {error && (
@@ -54,7 +58,10 @@ const RegisterPage = () => {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="name">
+            <label
+              className="block text-sm font-medium text-slate-300 mb-1.5"
+              htmlFor="name"
+            >
               Full Name
             </label>
             <input
@@ -63,12 +70,15 @@ const RegisterPage = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors text-slate-100"
-              placeholder="John Doe"
+              placeholder="Abhinav Singh"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="email">
+            <label
+              className="block text-sm font-medium text-slate-300 mb-1.5"
+              htmlFor="email"
+            >
               Email Address
             </label>
             <input
@@ -77,12 +87,15 @@ const RegisterPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors text-slate-100"
-              placeholder="you@example.com"
+              placeholder="example@gmail.com"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="password">
+            <label
+              className="block text-sm font-medium text-slate-300 mb-1.5"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -95,9 +108,11 @@ const RegisterPage = () => {
               minLength={6}
               required
             />
-            <p className="text-xs text-slate-500 mt-2">Must be at least 6 characters long.</p>
+            <p className="text-xs text-slate-500 mt-2">
+              Must be at least 6 characters long.
+            </p>
           </div>
-          
+
           <button
             type="submit"
             disabled={isLoading}
@@ -106,14 +121,17 @@ const RegisterPage = () => {
             {isLoading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
-              'Create Account'
+              "Create Account"
             )}
           </button>
         </form>
 
         <p className="mt-8 text-center text-sm text-slate-400">
-          Already have an account?{' '}
-          <Link to="/login" className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+          >
             Sign in here
           </Link>
         </p>
